@@ -1,0 +1,72 @@
+---
+title: "Reveal.js demo"
+author: Andrew Caines
+date: 27th October 2014
+output: 
+  revealjs_presentation:
+    theme: default
+    transition: fade
+    highlight: default
+    center: false
+---
+
+# How it works
+> - spoken language [incremental bullets]
+> - error analysis
+> - data quality
+
+
+# Code demo
+## etc
+1. transcriptions
+2. annotation
+3. parsing experiments
+
+
+---
+
+# Future Work
+## What we'd like to do
+1. conform to xml standard; e.g. Ide & Suderman 2014 Linguistic Annotation Framework
+2. decide what to annotate, label names, principles
+3. inter-annotator agreement exercise
+4. IPA in transcription
+
+----
+
++ new slide without header
++ render in R:
+```
+# devtools::install_github("rstudio/rmarkdown")
+library(rmarkdown)
+setwd('Dropbox/workspace/gitHub/ALTA/presentations/year1end/')
+render('dtalyear1.Rmd')
+```
+
+----
+
++ code plus output
+```{r}
+summary(cars)
+```
+
+----
+
++ output only
+```{r, echo = FALSE}
+summary(cars)
+```
+
+----
+
++ plot
+```{r, echo = FALSE}
+plot(cars)
+```
+
+----
+
++ code (no output)
+```{r, eval = FALSE}
+plot(cars)
+```

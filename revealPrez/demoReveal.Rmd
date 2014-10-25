@@ -1,0 +1,75 @@
+---
+title: "Reveal.js demo"
+author: Andrew Caines
+date: 27th October 2014
+output: revealjs::revealjs_presentation
+---
+
+# How it works
+- Rmarkdown package: `devtools::install_github("rstudio/rmarkdown")`
+- revealjs package: `devtools::install_github("jjallaire/revealjs")`
+- specify revealjs_presentation at head of .Rmd file: `revealjs::revealjs_presentation`
+- make .html file with R(script): `render('foo.Rmd', revealjs_presentation(options))`
+
+
+# Headers
+- 2 levels: `# h1, ## h2`
+
+# h1 = new slide
+
+## h2 = subheader
+
+
+# Options
+- themes: `default (black-on-white), simple, sky...`
+- transitions: `default (spin), cube, page, concave...`
+- also: vertical centering, syntax highlighting, incremental bullet points
+
+
+# Incremental bullets
+> - bullet 1 `> - bullet 1`
+> - bullet 2 `> - bullet 2`
+> - make all bullets incremental: render with option `incremental = TRUE`
+
+
+# Pros and Cons
+
+## +ve
+- shallow learning curve
+- formatting simplicity
+- web-ready
+- progress bar
+- inline R code
+
+## -ve
+- permanence?
+- slower development
+- lack of formatting sophistication
+
+
+# inline R code (no output)
+```{r, eval = FALSE}
+summary(cars)
+```
+
+
+# code plus output
+```{r}
+summary(cars)
+```
+
+
+# output only
+```{r, echo = FALSE}
+summary(cars)
+```
+
+
+# plots
+```{r, echo = FALSE}
+plot(cars)
+```
+
+
+# n.b. Slidify
+http://ramnathv.github.io/slidify/

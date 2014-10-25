@@ -3,7 +3,7 @@
 <html>
 
 <head>
-    <title>Andrew Caines, CambR demo</title>
+    <title>Andrew Caines, CambR remark.js demo</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <style type="text/css">
 
@@ -21,6 +21,9 @@
       h1, h2, h3 {
         font-family: 'Yanone Kaffeesatz';
         font-weight: normal;
+      }
+      h4 {
+        margin-bottom: 0;
       }
       li, ul, ol {
         padding-top: 1%;
@@ -113,8 +116,9 @@ class: center, middle, inverse
 
 ---
 .indent[
-# Remark.js Demo
+# remark.js presentation
 Andrew Caines
+@ CambR,
 _27th October 2014_
 ]
 
@@ -127,16 +131,144 @@ layout: false
 .toppadding[ . ]
 ## How it works
 
+* markdown
+* CSS in header
+* refer to remark.js locally or remotely
+
 ???
 + notes
 
 ---
 .header[ remark.js ]
 .toppadding[ . ]
-## Code demo
+## Demonstration
+
+```
+---
+## Demo header
+
+* bullet 1
+* bullet 2
+--
+
+* bullet 3: incremental slide
+
+---
+## New slide
+
+* tables:
+
+| my | table |
+| -- | ----- |
+| a | 001 |
+| b | 002 |
+
+* and other markdown (or HTML) syntax...
 
 ???
-+ notes
+notes (shown in Presenter view)
+```
+
+---
+.header[ remark.js ]
+.toppadding[ . ]
+## Demo header
+
+* bullet 1
+* bullet 2
+
+--
+
+* bullet 3: incremental slide
+
+---
+.header[ remark.js ]
+.toppadding[ . ]
+## New slide
+
+* tables:
+
+| my | table |
+| -- | ----- |
+| a | 001 |
+| b | 002 |
+
+* and other markdown (or HTML) syntax...
+* press 'P'
+* press 'C'
+
+???
+notes (shown in Presenter view)
+
+---
+.header[ remark.js ]
+.toppadding[ . ]
+## Images and links
+
+```
+* [a link](http://www.reddit.com/r/etymologymaps/)  
+```
+* [a link](http://www.reddit.com/r/etymologymaps/)  
+
+```
+![eurasia centroid](eurasia-centroid.png)
+```
+* an image...
+
+```
+[![european word translator](translator.png)](http://t.co/qjWCA0MVsl)
+```
+* a linked image...
+
+---
+.header[ remark.js ]
+.toppadding[ . ]
+## Images and links
+
+![eurasia centroid](eurasia-centroid.png)
+
+---
+.header[ remark.js ]
+.toppadding[ . ]
+## Images and links
+
+[![european word translator](translator.png)](http://t.co/qjWCA0MVsl)
+
+---
+.header[ remark.js ]
+.toppadding[ . ]
+## Loading remark.js
+
+* remote: `<script src="http://gnab.github.io/remark/downloads/remark-0.5.9.min.js" type="text/javascript">`
+* local: as with this demo  
+`<script src="../remark/remark-0.5.9.min.js" type="text/javascript">`
+
+---
+.header[ remark.js ]
+.toppadding[ . ]
+## Pros and cons
+
+#### +ve
+* shallow learning curve
+* transferable skills
+* presenter and clone modes
+* web-ready
+* fast development
+
+#### -ve
+* CSS
+* permanence?
+* versatility?
+* static
+
+---
+.header[ remark.js ]
+.toppadding[ . ]
+## Further info
+
+* author's demo: http://remarkjs.com/
+* GitHub repo including templates: https://github.com/gnab/remark
+* my GitHub repo feat this presentation: https://github.com/cainesap/nonbeamer
 
 
 </textarea>

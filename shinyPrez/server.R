@@ -7,135 +7,52 @@
 library(shiny); library(ggplot2)
 
 ## call any Rscripts here; see http://shiny.rstudio.com/tutorial/lesson5/
-source('rscripts/raspProbs.R')
+source('rscripts/mtcars.R')
+
+## colours for k-means example below
+palette(c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3",
+  "#FF7F00", "#FFFF33", "#A65628", "#F781BF", "#999999"))
 
 
-# server definitions
+## server definitions
 shinyServer(function(input, output, session) {
 
-  # corpora:datasets, from pilotCorpusCandidateCEFRs.R
-  output$candcefrTable <- renderDataTable(
-    pilotcefrcands, options = list(bFilter = FALSE, bPaginate = FALSE)
-  )
 
-
-  # transcription:evaluation, from transcrCpEval.R
-  output$transcrPlot <- renderPlot({
-    if (input$transcrFacet == FALSE) transcrCpEval else transcrCpEvalFacet
+  # demo app from Shiny App lesson 1: http://shiny.rstudio.com/tutorial/lesson1/
+  output$distPlot <- renderPlot({
+    x    <- faithful[, 2]  # Old Faithful Geyser data
+    bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    # draw the histogram with the specified number of bins
+    hist(x, breaks = bins, col = 'skyblue', border = 'white')
   })
 
-  # Send a pre-rendered image, and don't delete the image after sending it; from http://shiny.rstudio.com/articles/images.html; currently renders without tooltips (which was whole point of .svg format)
-#  output$transcrCpEval <- renderImage({
-#    filename <- normalizePath(file.path('www/transcrCpEval.svg'))
-    # Return a list containing the filename and alt text
-#    list(src = filename)
-#  }, deleteFile = FALSE)
+
+  # demo app from Shiny k-means example: http://shiny.rstudio.com/gallery/kmeans-example.html
+  # n.b. colour palette defined above
+  selectedData <- reactive({
+    iris[, c(input$xcol, input$ycol)]
+  })
+  clusters <- reactive({
+    kmeans(selectedData(), input$clusters)
+  })
+  output$plot1 <- renderPlot({
+    par(mar = c(5.1, 4.1, 0, 1))
+    plot(selectedData(),
+         col = clusters()$cluster,
+         pch = 20, cex = 3)
+    points(clusters()$centers, pch = 4, cex = 4, lwd = 4)
+  })
 
 
-  # segmentation:distribution:prosodic, from pauseLengthAnalysis.R
-#  output$pausePlot <- renderPlot({
-#    if (input$pauseFacet == FALSE) allIntensityhistPL else facetIntensityhistPL
-#  })
-
-  # segmentation:distribution:seglengths, from segmentLengthAnalysis.R
-  output$seglenPlot <- renderPlot({
-    if (input$seglens == "words") {
-      wordcountsType
-    } else if (input$seglens == "prosXcefr") {
-      wordcountsProsCefr
-    } else if (input$seglens == "synXcefr") {
-      wordcountsSynCefr
-    } else if (input$seglens == "seconds") {
-      segdurs
-    } else if (input$seglens == "secXcefr") {
-      segdursCefr
+  # call plot objects from mtcars.R, output dependent on user input
+  output$mtcarsPlot <- renderPlot({
+    if (input$cars == "col") {
+      cylcol
+    } else if (input$cars == "shp") {
+      cylshp
+    } else if (input$cars == "facet") {
+      facets
     }
   })
-
-  # segmentation:distribution:segdurs, from segmentLengthAnalysis.R
-#  output$segdurPlot <- renderPlot({
-#    if (input$segdurFacet == FALSE) synIntensityhistWC else synIntensityhistWCfacet
-#  })
-
-
-  # annotation:frequencies:table, from annotationScatters.R
-  # mk.II (all data + annot subsets + table)
-  output$annotTable <- renderDataTable(
-    annottypeTable, options = list(bFilter = FALSE, bPaginate = FALSE)
-  )
-
-  # annotation:frequencies:plot, from annotationScatters.R
-#  output$annotPlot <- renderPlot({
-#    if (input$annottype == "all") {
-#      p <- annotoverallplot
-#    } else if (input$annottype == "disf") {
-#      p <- annotdisfplot
-#    } else if (input$annottype == "form") {
-#      p <- annotformplot
-#    } else if (input$annottype == "idio") {
-#      p <- annotidioplot
-#    }
-    # deal with possible multiple selections with for loop and append()
-#    for (statsmooth in input$statsmooth) {
-#      if (statsmooth == "lm") {
-#        p <- p + lm
-#      } else if (statsmooth == "loess") {
-#        p <- p + loess
-#      } else if (statsmooth == "gam") {
-#        p <- p + gam
-#      }
-#    }
-    # now plot
-#    p
-#  })
-
-  output$parseProbsTable <- renderDataTable(
-    parseProbsTable, options = list(bFilter = FALSE, bPaginate = FALSE)
-  )
-  # parsing:results:plot
-  output$annotPlot <- renderPlot({
-    if (input$annottype == "all") {
-      annotAll
-    } else if (input$annottype == "disf") {
-      annotDisf
-    } else if (input$annottype == "form") {
-      annotForm
-    } else if (input$annottype == "idio") {
-      annotIdio
-    }
-  })
-
-  # annotation:subjectivity
-  output$errorFramework <- renderImage({
-    filename <- normalizePath(file.path('www/errorFramework.png'))
-    # Return a list containing the filename and alt text
-    list(src = filename)
-  }, deleteFile = FALSE)
-
-
-  # parsing:results, from parseProbs.R
-  # parsing:results:table
-  output$parseProbsTable <- renderDataTable(
-    parseProbsTable, options = list(bFilter = FALSE, bPaginate = FALSE)
-  )
-  # parsing:results:plot
-  output$parseProbsPlot <- renderPlot({
-    if (input$ppPlot == "syn") {
-      syntactic
-    } else if (input$ppPlot == "synpros") {
-      synpros
-    } else if (input$ppPlot == "cefr") {
-      synfacetcefr
-    } else if (input$ppPlot == "cand") {
-      synfacetcand
-    }
-  })
-
-  # parsing:treebank
-  output$brat <- renderImage({
-    filename <- normalizePath(file.path('www/brat-screenshot.png'))
-    # Return a list containing the filename and alt text
-    list(src = filename)
-  }, deleteFile = FALSE)
 
 })

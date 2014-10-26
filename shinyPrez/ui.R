@@ -1,272 +1,167 @@
-shinyUI(navbarPage("ALTA-DTAL Group", theme = "bootstrap.css",
+#shinyUI(navbarPage("CambR",
+shinyUI(navbarPage("CambR", theme = "bootstrap.css",
 
-  tabPanel("#",
+  tabPanel("shiny",
     fluidRow(
-      column(10, offset = 1,
-        h1("Spoken corpus annotation"),
-    	h4("Paula Buttery, Andrew Caines, Calbert Graham || Department of Theoretical & Applied Linguistics")
-      )
-    ),
-    fluidRow(
-      column(10,
-	includeHTML('html/candidateCountries.html')
-      )
-    )
-  ),
-
-  tabPanel("Corpora",
-    fluidRow(
-      column(10, offset = 1,
-        tabsetPanel(type = "tabs",
-      	  tabPanel("tasks",
-            h3("BULATS (Business Language Testing Service) speaking test"),
-	    includeMarkdown('markdown/corp_task.md'),
-	    br(),
-	    tags$audio(src = "SCPER76QWK_SD_01_extract.wav", type = "audio/wav", controls = NA)
-      	  ),
-      	  tabPanel("datasets",
-            h3("BULATS (Business Language Testing Service) speaking test"),
-	    includeMarkdown('markdown/corp_dsets1.md'),
-	    fluidRow(
-	      column(7, offset = 1,
-	        dataTableOutput("candcefrTable")
-	      )
-	    ),
-	    fluidRow(
-	      hr(),
-	      includeMarkdown('markdown/corp_dsets2.md')
-	    )
-      	  )
-	)
-      )
-    )
-  ),
-
-  tabPanel("Transcription",
-    fluidRow(
-      column(10, offset = 1,
-        tabsetPanel(type = "tabs",
-      	  tabPanel("motivation",
-            h3("Gold-standard versus crowd-sourced transcripts"),
-	    includeMarkdown('markdown/transcr_cp.md')
-	  ),
-          tabPanel("fid.1",
-	    column(10, offset = 1,
-	      h3("Fidelity 1: years"),
-	      includeHTML('html/SCPER76QWK_SD_01_extract.html')
-	    )
-	  ),
-          tabPanel("fid.2",
-	    column(10, offset = 1,
-	      h3("Fidelity 2: expectation"),
-	      includeHTML('html/S4EJWRJ898_SC_01_extract.html')
-	    )
-	  ),
-          tabPanel("fid.3",
-	    column(10, offset = 1,
-	      h3("Fidelity 3: disfluencies"),
-	      includeHTML('html/S4EJWRJ898_SD_01_extract.html')
-	    )
-	  ),
-          tabPanel("sp.1",
-	    column(10, offset = 1,
-	      h3("Spelling"),
-	      includeHTML('html/SQYVWTHN5M_SE_05_extract.html')
-	    )
-	  ),
-          tabPanel("pron.1",
-	    column(10, offset = 1,
-	      h3("Pronunciation"),
-	      includeHTML('html/S5NEPVUFKC_SE_03_extract.html')
-	    )
-	  ),
-      	  tabPanel("evaluation",
-#            h3("Gold-standard versus Crowd-sourced transcripts"),
-	    column(9, offset = 1,
-	      h3("µ accuracy: 82%"),
-	      plotOutput('transcrPlot'),  # via server.R, source() rscript in preamble
-	      hr(),
-	      fluidRow(
-	        column(4, offset = 1,
-	          checkboxInput("transcrFacet", label = "facet", value = FALSE)
-	        )
-	      )
-	    )
-	  )
-	)
-      )
-    )
-  ),
-
-  tabPanel("Segmentation",
-    fluidRow(
-      column(10, offset = 1,
-        tabsetPanel(type = "tabs",
-      	  tabPanel("overview",
-	    h3("How to segment text"),
-	    includeMarkdown('markdown/seg_oview.md')
-      	  ),
-      	  tabPanel("prosodic",
-	    column(10, offset = 1,
-	      includeHTML('html/S5NEPVUFKC_SD_01_prosodic.html')
-	    )
-      	  ),
-      	  tabPanel("syntactic",
-	    column(10, offset = 1,
-	      includeHTML('html/S5NEPVUFKC_SD_01_syntactic.html')
-	    )
-      	  ),
-      	  tabPanel("distributions",
-	    column(9, offset = 1,
-	      plotOutput('seglenPlot'),  # via server.R, source() rscript in preamble
-	      hr(),
-	      fluidRow(
-	        column(4, offset = 1,
-		  radioButtons("seglens", label = h4("segment lengths"),
-    		    choices = list("words [prosodic|syntactic]" = "words", "prosodic x CEFR" = "prosXcefr", "syntactic x CEFR" = "synXcefr", "seconds [prosodic]" = "seconds", "seconds x CEFR" = "secXcefr"), selected = "words")
-	        )
-	      )
-	    )
-	  )
-	)
-      )
-    )
-  ),
-
-  tabPanel("Annotation",
-    fluidRow(
-      column(10, offset = 1,
-        tabsetPanel(type = "tabs",
-      	  tabPanel("overview",
-            h3("What to annotate"),
-	    includeMarkdown('markdown/annot_oview.md')
-      	  ),
-      	  tabPanel("e.g.1",
-	    column(10, offset = 1,
-              h3("example 1: iterative correction in right direction? [B1]"),
-	      includeHTML('html/SXMBHT5CNR_SC_01_extract.html')
-	    )
-      	  ),
-      	  tabPanel("e.g.2",
-	    column(10, offset = 1,
-              h3("example 2: entire word order correction [B1]"),
-	      includeHTML('html/SXMBHT5CNR_SE_01_extract.html')
-	    )
-      	  ),
-      	  tabPanel("e.g.3",
-	    column(10, offset = 1,
-              h3("example 3: requires idiomatic correction but how? [B1]"),
-	      includeHTML('html/SXMBHT5CNR_SE_02_extract.html')
-	    )
-      	  ),
-      	  tabPanel("e.g.4",
-	    column(10, offset = 1,
-              h3("example 4: requires idiomatic correction but how? [B2]"),
-	      includeHTML('html/S4GFZ8MKG8_SE_05_extract.html')
-	    )
-      	  ),
-      	  tabPanel("e.g.5",
-#            h3("example 5: requires idiomatic correction but how? [C1]"),  # reduce examples from 6 to 5
-#	    includeHTML('html/S3F6AKMFU6_SE_05_extract.html')
-	    column(10, offset = 1,
-              h3("example 6: more idiomatic correction the better the text [C1]"),
-	      includeHTML('html/SQYVWTHN5M_SD_01_extract.html')
-	    )
-      	  ),
-      	  tabPanel("frequencies",
-            h3("Annotation Types"),
-	    tabsetPanel(type = "tabs",
-	      tabPanel("table",
-	        column(9, offset = 1,
-	          dataTableOutput("annotTable")
-		)
-	      ),
-	      tabPanel("plot",
-	        column(9, offset = 1,
-	          plotOutput('annotPlot'),  # via server.R, source() rscript in preamble  ## mk.II (all data + annot subsets)
-		  hr(),
-		  fluidRow(
-		    column(4, offset = 1,
-		      radioButtons("annottype", label = h4("annotation type"),
-    		        choices = list("overall" = "all", "disfluencies x CEFR" = "disf", "formal x CEFR" = "form", "idiomatic x CEFR" = "idio"), selected = "all")
-		    )
-#		    column(4,
-#        	      checkboxGroupInput("statsmooth", label = h6("stat_smooth()"), 
-#          	        choices = list("linear model (^2) [pink]" = "lm","LOESS [purple]" = "loess", "generalized additive model [green]" = "gam"), selected = "lm"
-#		      )
-#		    )
-		  )
-		)
-	      )
-	    )
-      	  ),
-      	  tabPanel("subjectivity",
-            h3("How to annotate"),
-	    includeMarkdown('markdown/annot_subj.md'),
+      column(8, offset = 2,
+	tabsetPanel(type = "tabs",
+          tabPanel("hello",
 	    hr(),
-	    column(9, offset = 1,
-	      imageOutput("errorFramework")
-	    )
-      	  )
-	)
-      )
-    )
-  ),
-
-  tabPanel("Parsing",
-    fluidRow(
-      column(10, offset = 1,
-        tabsetPanel(type = "tabs",
-	  tabPanel("transcr-mode",
-            h3("Canonical <-> Non-canonical distance"),
-	    tabsetPanel(type = "tabs",
-	      tabPanel("overview",
-	        includeMarkdown('markdown/parsing_oview.md')
-	      ),
-	      tabPanel("e.g.",
-	        column(9, offset = 1,
-        	  includeHTML('html/parsing_egs.html')
+	    hr(),
+            h1("CambR Shiny demo"),
+    	    h4("Andrew Caines || University of Cambridge"),
+	    hr(),
+	    hr()
+	  ),
+	  tabPanel("shiny?",
+	    h3("What's Shiny?"),
+	    hr(),
+	    includeMarkdown('markdown/overview.md')
+	  ),
+          tabPanel("ui.R",
+	    h3("ui.R"),
+	    hr(),
+	    includeMarkdown('markdown/ui.md')
+	  ),
+          tabPanel("server.R",
+	    h3("server.R"),
+	    hr(),
+	    includeMarkdown('markdown/server1.md')
+	  ),
+          tabPanel("e.g.",
+	    h3("Hello Shiny!"),
+	    hr(),
+  	    sidebarLayout(
+    	      sidebarPanel(
+      	        sliderInput("bins",
+                  "Number of bins:", min = 1, max = 50, value = 30
 		)
+    	      ),
+	      mainPanel(
+		plotOutput("distPlot")
 	      )
 	    )
-      	  ),
-      	  tabPanel("results",
-            h3("Parse tree log likelihoods (normalized)"),
-	    tabsetPanel(type = "tabs",
-	      tabPanel("table",
-	        dataTableOutput("parseProbsTable")
-	      ),
-	      tabPanel("plot",
-	        plotOutput('parseProbsPlot'),  # via server.R, source() rscript in preamble
-	        hr(),
-	        fluidRow(
-	          column(4, offset = 1,
-		    radioButtons("ppPlot", label = h4("plot type"),
-    		    choices = list("syntactic" = "syn", "prosodic|syntactic" = "synpros", "CEFR" = "cefr", "candidate" = "cand"), selected = "syn")
-	          )
-	        )
-	      )
-	    )
-      	  ),
-      	  tabPanel("treebank",
-	    imageOutput("brat")
+	  ),
+	  tabPanel("layout",
+	    h3("Fluid Grid system"),
+	    hr(),
+	    img(src = "fluidgrid.png"),
+	    hr(),
+	    pre("fluidRow(column(2, offset = 1, content), column(2, offset = 1, ...), column(6, ...))")
+	  ),
+	  tabPanel("navigation",
+	    h3("Tabsets"),
+	    pre("tabsetPanel(type = 'tabs', tabPanel('#1', content), tabPanel('#2', ...), tabPanel('#3', ...)"),
+	    hr(),
+	    h3("Navlists"),
+	    pre("navlistPanel('header', tabPanel('#1', content), tabPanel('#2', ...), tabPanel('#3, ...'))"),
+	    hr(),
+	    navlistPanel(
+    	      "Header",
+	      tabPanel("First",
+      	        h3("This is the first panel")
+    	      ),
+    	      tabPanel("Second",
+      	        h3("This is the second panel")
+    	      ),
+	      tabPanel("Third",
+      	        h3("This is the third panel")
+    	      )
+  	    )
 	  )
 	)
       )
     )
   ),
 
-  tabPanel("Future",
+  tabPanel("include",
     fluidRow(
-      column(10, offset = 1,
+      column(8, offset = 2,
+	tabsetPanel(type = "tabs",
+          tabPanel("text",
+	    h3("includeText()"),
+	    hr(),
+	    includeText('text/include.txt'),
+	    hr(),
+	    pre(includeText('text/include.txt'))
+	  ),
+	  tabPanel("markdown",
+            h3("includeMarkdown()"),
+	    hr(),
+	    includeMarkdown('markdown/remark.md')
+	  ),
+	  tabPanel("html1",
+            h3("includeHTML()"),
+	    hr(),
+	    includeHTML('html/basic.html')
+	  ),
+	  tabPanel("html2",
+            h3("includeHTML()"),
+	    hr(),
+	    includeHTML('html/tweets.html')
+	  ),
+	  tabPanel("html3",
+            h3("includeHTML()"),
+	    hr(),
+	    includeHTML('html/usdomesticflights.html')
+	  )
+	)
+      )
+    )
+  ),
+
+  tabPanel("Rscript",
+    fluidRow(
+      column(8, offset = 2,
         tabsetPanel(type = "tabs",
-      	  tabPanel("current work",
-            h3("Future directions: current work"),
-	    includeMarkdown('markdown/future_curr.md')
-      	  ),
-      	  tabPanel("planned work",
-            h3("Future directions: planned work"),
-	    includeMarkdown('markdown/future_plan.md')
+      	  tabPanel("internal",
+            h3("Server internal"),
+	    includeMarkdown('markdown/server2.md'),
+	    hr(),
+  	    sidebarLayout(
+	      sidebarPanel(
+    	        selectInput('xcol', 'X Variable', names(iris)),
+    		selectInput('ycol', 'Y Variable', names(iris),
+                selected=names(iris)[[2]]),
+    		numericInput('clusters', 'Cluster count', 3, min = 1, max = 9)
+  	      ),
+  	      mainPanel(
+    	        plotOutput('plot1')
+  	      )
+	    )
+	  ),
+      	  tabPanel("external",
+            h3("Server external"),
+	    includeMarkdown('markdown/server3.md'),
+	    hr(),
+	    plotOutput('mtcarsPlot'),
+            hr(),
+            fluidRow(
+              column(4, offset = 1,
+                radioButtons("cars", label = h4("plot options"),
+                  choices = list("cylinder colours" = "col", "cylinder shapes" = "shp", "transmission" = "facet"), selected = "col")
+              )
+            )
+	  )
+	)
+      )
+    )
+  ),
+
+  tabPanel("Pros+Cons",
+    fluidRow(
+      column(8, offset = 2,
+	navlistPanel(
+    	  "Pros+Cons",
+	  tabPanel("+ve",
+      	    h3("Positives"),
+	    hr(),
+	    includeMarkdown('markdown/positive.md')
+    	  ),
+	  tabPanel("-ve",
+      	    h3("Negatives"),
+	    hr(),
+	    includeMarkdown('markdown/negative.md')
 	  )
 	)
       )

@@ -14,6 +14,7 @@ Moving away from the LaTeX Beamer package: making presentations with remark.js (
 * runShiny.R: run shiny demo with `Rscript runShiny.R`, opens in browser;
 * shinyPrez: Shiny App demo presentation;
   - essential components are server.R and ui.R
-  - additional content in html, markdown, rscripts, www directories
+  - additional content in html, markdown, rscripts, text, www directories
   - pre-constructed Google motion chart in googlevis dir
   - deploy to shinyapps.io with controlShinyAppDeployment.R
+  - see [deployed demo](https://cainesap.shinyapps.io/shinydemo/)

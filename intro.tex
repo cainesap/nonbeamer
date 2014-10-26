@@ -6,6 +6,8 @@
 \usepackage{fourier} % font
 \usepackage[T1]{fontenc}
 
+\usepackage{pifont}  % dingbats
+
 %\usepackage{url}
 %\urlstyle{same}                     % to keep fonts the same for links
 \usepackage{microtype}             % for font expansion and character protusion; goes with DisableLigatures below
@@ -35,16 +37,35 @@
 \begin{itemize}
 \item postdoc, linguist, R-user
 \pause
-\item U.Edinburgh -> U.Cambridge -> EBI -> U.Cambridge
+\item U.Edinburgh [ugrad]
 \pause
+\item U.Cambridge [pgrad]
+\pause
+\item EBI [job]
+\pause
+\item U.Cambridge [pdoc]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Serendipity}
+\begin{itemize}
 \item conference presentation, Dublin, August
 \item project review, Cambridge, October
+\pause
+\item CambR user group Google group, 10-Jun: \href{https://groups.google.com/d/msg/cambridge-r-user-group/yp8QJRuEaFY/1Bsb85xtqVgJ}{Stephen Eglen 'Making slides in R with slidify/rmarkdown/ ...'}
+\begin{enumerate}
+\item Slidify [Rmarkdown]
+\item reveal.js [HTML; Rstudio?]
+\item Google I/O 2012 [HTML / markdown]
+\end{enumerate}
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Why not Beamer?}
 \begin{itemize}
+\item presenter mode
 \item web app demonstrations
 \item dynamic plots
 \end{itemize}
@@ -53,18 +74,45 @@
 \begin{frame}
 \frametitle{Demonstrations}
 \begin{itemize}
-\item markdown + remark.js
-\item rmarkdown + reveal.js
-\item Shiny App
-\item disclaimer: AFAIK
+\item remark.js [markdown + HTML + CSS]
+\item reveal.js [Rmarkdown]
+\item Shiny App [R (+ HTML, CSS, markdown)]
+\item \emph{n.b.} no \href{http://ramnathv.github.io/slidify/}{Slidify}!
+\item \emph{disclaimer}: A.F.A.I.K.
+\pause
+\item -> go to demos
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Summary}
+\begin{center}
+\begin{tabular}{lll|cc}
+\textbf{method} & \textbf{lang} & \textbf{auth} & \textbf{ease-learn} & \textbf{lite-dev} \\
+\hline
+remark.js & markdown & gnab & \ding{52} & \ding{52} \\
+reveal.js & Rmarkdown & jjallaire & \ding{52} & \ding{56} \\
+Shiny & R(markdown) & Rstudio & \ding{56} & \ding{56} \\
+\end{tabular}
+
+\vspace{10mm}
+
+\begin{tabular}{l|cccc}
+\textbf{method} & \textbf{P-mode} & \textbf{Rscript} & \textbf{dynamic} & \textbf{PDF} \\
+\hline
+remark.js & \ding{52} & \ding{56} & \ding{56} & \ding{52} \\
+reveal.js & \ding{52} & \ding{52} & \ding{56} & \ding{56} \\
+Shiny & \ding{56} & \ding{52} & \ding{52} & \ding{56} \\
+\end{tabular}
+\end{center}
 \end{frame}
 
 \begin{frame}
 \frametitle{Thank you}
 \begin{itemize}
+\item GitHub: \url{https://github.com/cainesap/nonbeamer}
 \item email: apc38@cam.ac.uk
-\item website: apc38.user.srcf.net
+\item website: \url{http://apc38.user.srcf.net}
 \item twitter: @cainesap
 \end{itemize}
 \end{frame}

@@ -1,3 +1,5 @@
+require(markdown)
+
 #shinyUI(navbarPage("CambR",
 shinyUI(navbarPage("CambR", theme = "bootstrap.css",
 

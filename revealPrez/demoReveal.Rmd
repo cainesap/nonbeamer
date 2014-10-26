@@ -71,5 +71,9 @@ plot(cars)
 ```
 
 
-# n.b. Slidify
-http://ramnathv.github.io/slidify/
+# Further info
+- demo: http://lab.hakim.se/reveal-js/#/
+- future site: http://revealjs.com/
+- GitHub repo1: https://github.com/hakimel/reveal.js/ [more developed]
+- GitHub repo2: https://github.com/jjallaire/revealjs [future dev?]
+- _n.b._ Slidify

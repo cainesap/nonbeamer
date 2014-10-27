@@ -17,4 +17,4 @@ Moving away from the LaTeX Beamer package: making presentations with remark.js (
   - additional content in html, markdown, rscripts, text, www directories
   - pre-constructed Google motion chart in googlevis dir
   - deploy to shinyapps.io with controlShinyAppDeployment.R
-  - see [deployed demo](https://cainesap.shinyapps.io/shinydemo/)
+  - see [deployed demo](https://cainesap.shinyapps.io/shinydemo/), controlled via `Rscript controlShinyAppDeployment.R`

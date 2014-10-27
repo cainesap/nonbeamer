@@ -44,6 +44,18 @@ shinyServer(function(input, output, session) {
   })
 
 
+  # demo table output from file download example (minus download bit): http://shiny.rstudio.com/gallery/file-download.html
+  datasetInput <- reactive({
+    switch(input$dataset,
+           "rock" = rock,
+           "pressure" = pressure,
+           "cars" = cars)
+  })
+  output$table <- renderTable({
+    datasetInput()
+  })
+
+
   # call plot objects from mtcars.R, output dependent on user input
   output$mtcarsPlot <- renderPlot({
     if (input$cars == "col") {

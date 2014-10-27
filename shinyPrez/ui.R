@@ -116,8 +116,8 @@ shinyUI(navbarPage("CambR", theme = "bootstrap.css",
     fluidRow(
       column(8, offset = 2,
         tabsetPanel(type = "tabs",
-      	  tabPanel("internal",
-            h3("Server internal"),
+      	  tabPanel("internal1",
+            h3("Server internal: plots"),
 	    includeMarkdown('markdown/server2.md'),
 	    hr(),
   	    sidebarLayout(
@@ -132,9 +132,24 @@ shinyUI(navbarPage("CambR", theme = "bootstrap.css",
   	      )
 	    )
 	  ),
+      	  tabPanel("internal2",
+            h3("Server internal: tables"),
+	    includeMarkdown('markdown/server3.md'),
+	    hr(),
+	    sidebarLayout(
+    	      sidebarPanel(
+      	        selectInput("dataset", "Choose a dataset:", 
+                  choices = c("rock", "pressure", "cars")
+		)
+    	      ),
+    	      mainPanel(
+      	        tableOutput('table')
+    	      )
+  	    )
+	  ),
       	  tabPanel("external",
             h3("Server external"),
-	    includeMarkdown('markdown/server3.md'),
+	    includeMarkdown('markdown/server4.md'),
 	    hr(),
 	    plotOutput('mtcarsPlot'),
             hr(),

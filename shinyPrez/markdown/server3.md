@@ -1,18 +1,15 @@
+* from: http://shiny.rstudio.com/gallery/file-download.html
+
 ```
-library(shiny); library(ggplot2)
-source('rscripts/mtcars.R')
-
-shinyServer(function(input, output, session) {
-
-  output$mtcarsPlot <- renderPlot({
-    if (input$cars == "col") {
-      cylcol
-    } else if (input$cars == "shp") {
-      cylshp
-    } else if (input$cars == "facet") {
-      facets
-    }
+shinyServer(function(input, output) {
+  datasetInput <- reactive({
+    switch(input$dataset,
+           "rock" = rock,
+           "pressure" = pressure,
+           "cars" = cars)
   })
-
+  output$table <- renderTable({
+    datasetInput()
+  })
 })
 ```
